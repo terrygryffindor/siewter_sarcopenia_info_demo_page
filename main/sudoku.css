@@ -1,0 +1,84 @@
+/* ---------- Sudoku styles ---------- */
+
+.sudoku-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 16px;
+}
+.sudoku-controls label { color: #444; }
+.sudoku-controls select {
+  font: inherit;
+  margin-left: 4px;
+  padding: 6px 8px;
+  border: 1px solid #c9d3e0;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.sudoku-btn {
+  font: inherit;
+  padding: 8px 22px;
+  border: 2px solid #1f3a5f;
+  border-radius: 999px;
+  background: #1f3a5f;
+  color: #fff;
+  cursor: pointer;
+}
+.sudoku-btn:hover { background: #2c5282; border-color: #2c5282; }
+.sudoku-btn.secondary { background: #fff; color: #1f3a5f; }
+.sudoku-btn.secondary:hover { background: #eef3fd; }
+
+/* The 9x9 grid */
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  width: min(396px, 100%);
+  margin: 0 auto;
+  border: 3px solid #1f3a5f;
+  background: #fff;
+}
+
+/* One square (an <input>) */
+.sudoku-cell {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid #c9d3e0;
+  border-radius: 0;
+  background: #fff;
+  color: #2c5282;               /* numbers the player types */
+  font: 600 1.3rem system-ui, sans-serif;
+  text-align: center;
+  caret-color: transparent;
+  cursor: pointer;
+}
+.sudoku-cell.given {             /* numbers that come with the puzzle */
+  color: #222;
+  font-weight: 700;
+  background: #f0f3f7;
+  cursor: default;
+}
+
+/* Thicker lines between the 3x3 boxes */
+.sudoku-cell.box-right  { border-right: 2px solid #1f3a5f; }
+.sudoku-cell.box-bottom { border-bottom: 2px solid #1f3a5f; }
+
+/* Highlights */
+.sudoku-cell.related  { background: #eef3fd; }   /* same row/column/box as the selected square */
+.sudoku-cell.given.related { background: #e2e9f3; }
+.sudoku-cell.same-num { background: #d6e4ff; }   /* same number as the selected square */
+.sudoku-cell:focus    { outline: none; background: #fff2b3; }
+.sudoku-cell.conflict { color: #c0392b; }        /* clashes with another square */
+.sudoku-cell.wrong    { background: #fde2df; color: #c0392b; }
+.sudoku-board.solved .sudoku-cell { background: #d4f5dd; }
+.sudoku-cell.revealed { color: #8a5a00; font-style: italic; }   /* filled in by "Reveal solution" */
+.sudoku-cell.revealed.wrong { color: #c0392b; }                /* player had a wrong number here */
+.sudoku-board.revealed-board .sudoku-cell { cursor: default; }
+
+@media (max-width: 420px) {
+  .sudoku-cell { font-size: 1.05rem; }
+}

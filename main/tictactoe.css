@@ -1,0 +1,32 @@
+/* Tic-tac-toe styles. Not currently used by any page.
+   To re-enable the game, see the instructions at the top of tictactoe.js. */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: min(270px, 100%);
+  margin: 0 auto 16px;
+}
+.cell {
+  aspect-ratio: 1;
+  font: 700 2.2rem system-ui, sans-serif;
+  background: #fff;
+  border: 2px solid #c9d3e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cell:hover { background: #eef3fd; }
+.cell.x { color: #1f3a5f; }
+.cell.o { color: #c0392b; }
+.cell.win { background: #d4f5dd; border-color: #2e9e57; }
+.reset-btn {
+  font: inherit;
+  padding: 8px 22px;
+  border: none;
+  border-radius: 999px;
+  background: #1f3a5f;
+  color: #fff;
+  cursor: pointer;
+}
+.reset-btn:hover { background: #2c5282; }
