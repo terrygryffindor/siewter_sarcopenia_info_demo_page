@@ -19,6 +19,49 @@
     }
     .layout { flex: 1; width: 100%; }
 
+    /* Flying plane strip */
+    .sky {
+      position: relative;
+      height: 72px;
+      overflow: hidden;
+      border-top: 1px dashed #d5dbe3;
+    }
+    .plane {
+      position: absolute;
+      top: 12px;
+      left: 0;
+      color: #1f3a5f;
+      animation: fly 16s linear infinite;
+    }
+    .plane svg {
+      display: block;
+      animation: bob 2.4s ease-in-out infinite alternate;
+    }
+    .plane .trail { opacity: 0.45; }
+    .plane .prop {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: spin 0.25s linear infinite;
+    }
+    @keyframes fly {
+      from { transform: translateX(-160px); }
+      to   { transform: translateX(100vw); }
+    }
+    @keyframes bob {
+      from { transform: translateY(-6px) rotate(-2deg); }
+      to   { transform: translateY(6px)  rotate(2deg); }
+    }
+    @keyframes spin {
+      from { transform: scaleY(1); }
+      50%  { transform: scaleY(0.2); }
+      to   { transform: scaleY(1); }
+    }
+    /* Visitors who turn off animations see the plane parked, not moving */
+    @media (prefers-reduced-motion: reduce) {
+      .plane, .plane svg, .plane .prop { animation: none; }
+      .plane { left: 16px; }
+    }
+
     /* Footer */
     footer {
       background: #1f3a5f;
@@ -192,6 +235,31 @@
       </ul>
     </section>
   </main>
+  </div>
+
+  <!-- Decorative stick-drawn plane flying along the bottom strip -->
+  <div class="sky" aria-hidden="true">
+    <div class="plane">
+      <svg viewBox="0 0 140 44" width="140" height="44" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- contrail -->
+        <path class="trail" d="M2 24 H56" stroke-dasharray="4 6"/>
+        <g transform="translate(60 0)">
+          <!-- body -->
+          <path d="M6 20 L62 20 Q74 20 74 24 Q74 28 64 28 L12 28 Z"/>
+          <!-- tail fin -->
+          <path d="M6 20 L2 6 L11 6 L19 20"/>
+          <!-- wing -->
+          <path d="M32 25 L22 40 L31 40 L48 25"/>
+          <!-- windows -->
+          <circle cx="44" cy="23.5" r="1.2"/>
+          <circle cx="52" cy="23.5" r="1.2"/>
+          <circle cx="60" cy="23.5" r="1.2"/>
+          <!-- propeller -->
+          <path class="prop" d="M76 16 V32"/>
+        </g>
+      </svg>
+    </div>
   </div>
 
   <footer>
